@@ -46,7 +46,8 @@ import org.koin.androidx.compose.koinViewModel
 fun CitiesRoute(
     modifier: Modifier = Modifier,
     windowSizeClass: WindowSizeClass,
-    mvi: CitiesProcessor = koinViewModel()
+    mvi: CitiesProcessor = koinViewModel(),
+    onNavigateToCharges: (ChargeCity) -> Unit
 ) {
     val uiState by mvi.viewState.collectAsStateWithLifecycle()
 
@@ -58,7 +59,7 @@ fun CitiesRoute(
             ) {
                 when (uiState) {
                     CitiesState.Error -> CitiesErrorScreen(modifier)
-                    is CitiesState.Idle -> CitiesScreen(modifier, uiState as CitiesState.Idle)
+                    is CitiesState.Idle -> CitiesScreen(modifier, uiState as CitiesState.Idle, onNavigateToCharges)
                     CitiesState.Loading -> CitiesLoadingScreen(modifier)
                 }
             }
@@ -67,7 +68,8 @@ fun CitiesRoute(
 }
 
 @Composable
-private fun CitiesScreen(modifier: Modifier, state: CitiesState.Idle) {
+private fun CitiesScreen(modifier: Modifier, state: CitiesState.Idle,
+                         onNavigateToCharges: (ChargeCity) -> Unit) {
     var selectedCity: ChargeCity? by remember { mutableStateOf(null) }
     Box(modifier = modifier.fillMaxSize()) {
         LazyColumn(
@@ -91,7 +93,9 @@ private fun CitiesScreen(modifier: Modifier, state: CitiesState.Idle) {
             }
         }
         ConfirmButton(modifier = Modifier.align(Alignment.BottomCenter), isEnabled = selectedCity != null) {
-            //navigate
+            selectedCity?.let {
+                onNavigateToCharges.invoke(it)
+            }
         }
     }
 }
@@ -117,7 +121,7 @@ private fun CityItem(
     ) {
         Text(
             modifier = Modifier.padding(horizontal = 16.dp),
-            text = chargeCity.city.value,
+            text = chargeCity.city,
             style = MaterialTheme.typography.bodyLarge
         )
         Checkbox(checked = isSelected, onCheckedChange = {

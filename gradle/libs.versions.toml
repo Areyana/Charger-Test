@@ -17,7 +17,7 @@ coil = "2.4.0"
 kotlinxCoroutines = "1.7.2"
 kotlinxSerialization = "1.6.3"
 androidxLifecycle = "2.6.1"
-androidxNavigation = "2.7.0"
+androidxNavigation = "2.8.0-beta05"
 accompanist = "0.32.0"
 
 [libraries]
@@ -52,6 +52,7 @@ timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "tim
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization"}
 kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinxSerialization"}
+kotlin-android-extensions = { group = "org.jetbrains.kotlin", name = "kotlin-android-extensions", version.ref = "kotlin"}
 androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util", version.ref = "androidxCompose" }
