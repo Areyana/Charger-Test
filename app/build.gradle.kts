@@ -1,6 +1,7 @@
 plugins {
     id("charger.android.application")
     id("charger.android.application.compose")
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 val appVersion: String by project
@@ -49,6 +50,9 @@ dependencies {
     implementation(libs.coil.kt.svg)
 
     implementation(libs.timber)
+
+    implementation(libs.kotlinx.serialization.core)
+    implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.koin.core)
     implementation(libs.koin.compose)

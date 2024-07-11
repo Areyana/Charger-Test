@@ -15,6 +15,7 @@ timber = "5.0.1"
 koin = "3.5.3"
 coil = "2.4.0"
 kotlinxCoroutines = "1.7.2"
+kotlinxSerialization = "1.6.3"
 androidxLifecycle = "2.6.1"
 androidxNavigation = "2.7.0"
 accompanist = "0.32.0"
@@ -52,6 +53,8 @@ coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "
 coil-kt-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil"}
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber"}
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization"}
+kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinxSerialization"}
 androidx-lifecycle-runtimeCompose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util", version.ref = "androidxCompose" }
@@ -60,5 +63,6 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin"}
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 
