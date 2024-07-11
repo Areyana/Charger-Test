@@ -38,6 +38,7 @@ import com.areyana.charger.R
 import com.areyana.charger.domain.model.ChargeCity
 import com.areyana.design_system.component.ChargerBackground
 import com.areyana.design_system.component.Title
+import com.areyana.design_system.component.noRippleClickable
 import org.koin.androidx.compose.koinViewModel
 
 
@@ -82,8 +83,12 @@ private fun CitiesScreen(modifier: Modifier, state: CitiesState.Idle,
                 Spacer(modifier = Modifier.height(16.dp))
             }
             itemsIndexed(state.cities.toList()) { index, item ->
-                CityItem(chargeCity = item, isSelected = selectedCity?.city == item.city) { city ->
-                    selectedCity = city
+                CityItem(chargeCity = item, isSelected = selectedCity?.city == item.city) { newSelectedCity ->
+                    selectedCity = if (selectedCity?.city == newSelectedCity.city) {
+                        null
+                    } else {
+                        newSelectedCity
+                    }
                 }
                 if (index == state.cities.size - 1) {
                     Spacer(modifier = Modifier.height(96.dp))
@@ -115,7 +120,9 @@ private fun CityItem(
                 color = MaterialTheme.colorScheme.surfaceVariant,
                 shape = RoundedCornerShape(32.dp)
             )
-            .padding(all = 16.dp),
+            .padding(all = 16.dp).noRippleClickable {
+                onCitySelected.invoke(chargeCity)
+            },
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -125,9 +132,7 @@ private fun CityItem(
             style = MaterialTheme.typography.bodyLarge
         )
         Checkbox(checked = isSelected, onCheckedChange = {
-            if (it) {
-                onCitySelected.invoke(chargeCity)
-            }
+            onCitySelected.invoke(chargeCity)
         })
     }
 }
