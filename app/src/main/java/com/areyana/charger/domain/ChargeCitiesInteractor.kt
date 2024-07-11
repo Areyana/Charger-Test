@@ -1,8 +1,7 @@
 package com.areyana.charger.domain
 
-import com.areyana.charger.domain.model.Charge
-import com.areyana.charger.domain.model.City
+import com.areyana.charger.domain.model.ChargeCity
 
 interface ChargeCitiesInteractor {
-    suspend fun loadChargeCities(): Result<Map<City, List<Charge>>>
+    suspend fun loadChargeCities(): Result<List<ChargeCity>>
 }

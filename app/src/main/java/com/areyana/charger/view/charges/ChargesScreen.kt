@@ -11,7 +11,7 @@ fun ChargesRoute(
     modifier: Modifier = Modifier,
     windowSizeClass: WindowSizeClass,
     onBack: () -> Unit,
-    mvi: CitiesProcessor = koinViewModel()
+    mvi: ChargesProcessor = koinViewModel()
 ) {
 
 }

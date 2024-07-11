@@ -38,5 +38,69 @@
       "name": "Punkt E",
       "address": "Малая Монетная ул., 2Г"
     }
+  },
+  {
+    "city": "Moscow1",
+    "charger": {
+      "busy": false,
+      "name": "Lipgart",
+      "address": "2-я Бауманская ул., 5, стр. 5"
+    }
+  },
+  {
+    "city": "Moscow2",
+    "charger": {
+      "busy": false,
+      "name": "Lipgart",
+      "address": "2-я Бауманская ул., 5, стр. 5"
+    }
+  },
+  {
+    "city": "Moscow3",
+    "charger": {
+      "busy": false,
+      "name": "Lipgart",
+      "address": "2-я Бауманская ул., 5, стр. 5"
+    }
+  },
+  {
+    "city": "Moscow4",
+    "charger": {
+      "busy": false,
+      "name": "Lipgart",
+      "address": "2-я Бауманская ул., 5, стр. 5"
+    }
+  },
+  {
+    "city": "Moscow5",
+    "charger": {
+      "busy": false,
+      "name": "Lipgart",
+      "address": "2-я Бауманская ул., 5, стр. 5"
+    }
+  },
+  {
+    "city": "Moscow6",
+    "charger": {
+      "busy": false,
+      "name": "Lipgart",
+      "address": "2-я Бауманская ул., 5, стр. 5"
+    }
+  },
+  {
+    "city": "Moscow7",
+    "charger": {
+      "busy": false,
+      "name": "Lipgart",
+      "address": "2-я Бауманская ул., 5, стр. 5"
+    }
+  },
+  {
+    "city": "Moscow8",
+    "charger": {
+      "busy": false,
+      "name": "Lipgart",
+      "address": "2-я Бауманская ул., 5, стр. 5"
+    }
   }
 ]

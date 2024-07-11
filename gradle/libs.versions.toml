@@ -48,9 +48,6 @@ accompanist-systemuicontroller = { group = "com.google.accompanist", name = "acc
 koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin"}
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin"}
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin"}
-coil-kt = { group = "io.coil-kt", name = "coil", version.ref = "coil"}
-coil-kt-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil"}
-coil-kt-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil"}
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber"}
 kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinxSerialization"}

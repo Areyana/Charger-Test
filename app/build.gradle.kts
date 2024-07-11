@@ -41,14 +41,12 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.compose.material3.windowSizeClass)
+    implementation(libs.androidx.lifecycle.runtimeCompose)
 
     implementation(libs.accompanist.systemuicontroller)
 
     implementation(libs.material3)
-
-    implementation(libs.coil.kt)
-    implementation(libs.coil.kt.svg)
-
+    
     implementation(libs.timber)
 
     implementation(libs.kotlinx.serialization.core)

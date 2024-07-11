@@ -17,7 +17,7 @@ fun ChargerNavHost(
     windowSizeClass: WindowSizeClass,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ChargesDestination.route
+    startDestination: String = CitiesDestination.route
 ) {
     NavHost(
         navController = navController,

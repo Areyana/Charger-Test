@@ -1,5 +1,7 @@
 package com.areyana.charger.view.charges
 
+import com.areyana.charger.domain.model.Charge
+import com.areyana.charger.domain.model.City
 import com.areyana.mvi.Intent
 import com.areyana.mvi.MviProcessor
 import com.areyana.mvi.SingleEvent
@@ -16,7 +18,7 @@ class ChargesProcessor: MviProcessor<ChargesState, ChargesIntent, ChargesSingleE
 
     internal class ChargesReducer : Reducer<ChargesState, ChargesIntent> {
         override fun reduce(state: ChargesState, intent: ChargesIntent) = when (intent) {
-            ChargesIntent.Error -> TODO()
+            ChargesIntent.Error -> ChargesState.Error
         }
 
     }
@@ -32,5 +34,6 @@ sealed interface ChargesSingleEvent : SingleEvent {
 
 sealed interface ChargesState : State {
     data object Loading : ChargesState
-    data class Idle(val test: String): ChargesState
+    data object Error: ChargesState
+    data class Idle(val cities: Map<City, List<Charge>>): ChargesState
 }
