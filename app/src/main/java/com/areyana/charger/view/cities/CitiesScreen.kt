@@ -13,12 +13,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -59,9 +57,11 @@ fun CitiesRoute(
                     .consumeWindowInsets(innerPadding)
             ) {
                 when (uiState) {
-                    CitiesState.Error -> CitiesErrorScreen(modifier)
-                    is CitiesState.Idle -> CitiesScreen(modifier, uiState as CitiesState.Idle, onNavigateToCharges)
+                    is CitiesState.Idle -> CitiesScreen(modifier, uiState as CitiesState.Idle, onNavigateToCharges, onSelectCity = {
+                        mvi.sendIntent(CitiesIntent.ChangeSelectedCity(it))
+                    })
                     CitiesState.Loading -> CitiesLoadingScreen(modifier)
+                    CitiesState.Error -> CitiesErrorScreen(modifier)
                 }
             }
         }
@@ -70,8 +70,7 @@ fun CitiesRoute(
 
 @Composable
 private fun CitiesScreen(modifier: Modifier, state: CitiesState.Idle,
-                         onNavigateToCharges: (ChargeCity) -> Unit) {
-    var selectedCity: ChargeCity? by remember { mutableStateOf(null) }
+                         onNavigateToCharges: (ChargeCity) -> Unit, onSelectCity: (ChargeCity?) -> Unit) {
     Box(modifier = modifier.fillMaxSize()) {
         LazyColumn(
             modifier = Modifier
@@ -83,12 +82,13 @@ private fun CitiesScreen(modifier: Modifier, state: CitiesState.Idle,
                 Spacer(modifier = Modifier.height(16.dp))
             }
             itemsIndexed(state.cities.toList()) { index, item ->
-                CityItem(chargeCity = item, isSelected = selectedCity?.city == item.city) { newSelectedCity ->
-                    selectedCity = if (selectedCity?.city == newSelectedCity.city) {
+                CityItem(chargeCity = item, isSelected = state.selectedCity?.city == item.city) { newSelectedCity ->
+                    val newCity = if (state.selectedCity?.city == newSelectedCity.city) {
                         null
                     } else {
                         newSelectedCity
                     }
+                    onSelectCity.invoke(newCity)
                 }
                 if (index == state.cities.size - 1) {
                     Spacer(modifier = Modifier.height(96.dp))
@@ -97,8 +97,8 @@ private fun CitiesScreen(modifier: Modifier, state: CitiesState.Idle,
                 }
             }
         }
-        ConfirmButton(modifier = Modifier.align(Alignment.BottomCenter), isEnabled = selectedCity != null) {
-            selectedCity?.let {
+        ConfirmButton(modifier = Modifier.align(Alignment.BottomCenter), isEnabled = state.selectedCity != null) {
+            state.selectedCity?.let {
                 onNavigateToCharges.invoke(it)
             }
         }
@@ -120,7 +120,8 @@ private fun CityItem(
                 color = MaterialTheme.colorScheme.surfaceVariant,
                 shape = RoundedCornerShape(32.dp)
             )
-            .padding(all = 16.dp).noRippleClickable {
+            .padding(all = 16.dp)
+            .noRippleClickable {
                 onCitySelected.invoke(chargeCity)
             },
         horizontalArrangement = Arrangement.SpaceBetween,
