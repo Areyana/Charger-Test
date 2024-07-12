@@ -18,7 +18,6 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -38,7 +37,6 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun CitiesRoute(
     modifier: Modifier = Modifier,
-    windowSizeClass: WindowSizeClass,
     mvi: CitiesProcessor = koinViewModel(),
     onNavigateToCharges: (ChargeCity) -> Unit
 ) {

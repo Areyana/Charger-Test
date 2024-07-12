@@ -25,6 +25,7 @@ class CitiesProcessor(private val chargeCitiesInteractor: ChargeCitiesInteractor
                 },
                 onFailure = {
                     Timber.tag("[App]").e("ChargeCitiesInteractor::loadChargeCities failure: ${it.stackTraceToString()}")
+                    sendIntent(CitiesIntent.Error)
                 }
             )
         }
@@ -39,7 +40,7 @@ class CitiesProcessor(private val chargeCitiesInteractor: ChargeCitiesInteractor
     }
 
     override suspend fun handleIntent(intent: CitiesIntent, state: CitiesState): CitiesIntent? = when(intent) {
-        is CitiesIntent.NewCities, is CitiesIntent.ChangeSelectedCity -> null
+        is CitiesIntent.NewCities, is CitiesIntent.ChangeSelectedCity, CitiesIntent.Error -> null
     }
 
     internal class CitiesReducer : Reducer<CitiesState, CitiesIntent> {
@@ -47,6 +48,7 @@ class CitiesProcessor(private val chargeCitiesInteractor: ChargeCitiesInteractor
             is CitiesIntent.NewCities -> CitiesState.Idle(intent.cities)
             is CitiesIntent.ChangeSelectedCity -> (state as? CitiesState.Idle)?.copy(selectedCity = intent.city)
                 ?: CitiesState.Error
+            CitiesIntent.Error -> CitiesState.Error
         }
 
     }
@@ -55,6 +57,7 @@ class CitiesProcessor(private val chargeCitiesInteractor: ChargeCitiesInteractor
 sealed interface CitiesIntent : Intent {
     data class NewCities(val cities: List<ChargeCity>): CitiesIntent
     data class ChangeSelectedCity(val city: ChargeCity?): CitiesIntent
+    data object Error: CitiesIntent
 }
 
 sealed interface CitiesSingleEvent : SingleEvent {

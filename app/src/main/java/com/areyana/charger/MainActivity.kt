@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
                         systemUiController.setSystemBarsColor(backgroundColor, darkIcons = !darkTheme)
                         onDispose {}
                     }
-                    ChargerApp(calculateWindowSizeClass(this))
+                    ChargerApp()
                 }
             }
         }

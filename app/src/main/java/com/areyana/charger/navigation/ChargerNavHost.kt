@@ -1,6 +1,5 @@
 package com.areyana.charger.navigation
 
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -17,7 +16,6 @@ import org.koin.core.parameter.parametersOf
 
 @Composable
 fun ChargerNavHost(
-    windowSizeClass: WindowSizeClass,
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     startDestination: String = CitiesDestination.route
@@ -29,14 +27,14 @@ fun ChargerNavHost(
     ) {
         composable<ChargesArg> {
             val arg: ChargesArg = it.toRoute()
-            ChargesRoute(windowSizeClass = windowSizeClass, onBack = {
+            ChargesRoute(onBack = {
                 navController.popBackStack()
             }, mvi = koinViewModel {
                 parametersOf(arg)
             })
         }
         composable(route = CitiesDestination.route) {
-            CitiesRoute(windowSizeClass = windowSizeClass, onNavigateToCharges = {
+            CitiesRoute(onNavigateToCharges = {
                 navController.navigate(ChargesArg(it.city))
             })
         }

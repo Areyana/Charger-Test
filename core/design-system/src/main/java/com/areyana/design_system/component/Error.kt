@@ -13,6 +13,6 @@ import com.areyana.charger.core.designsystem.R
 @Composable
 fun ErrorScreen(modifier: Modifier = Modifier) {
     Box(modifier = modifier.fillMaxSize()) {
-        Text(modifier = Modifier.align(Alignment.Center), text = stringResource(R.string.something_went_wrong), style = MaterialTheme.typography.headlineMedium)
+        Text(modifier = Modifier.align(Alignment.Center), text = stringResource(R.string.something_went_wrong), style = MaterialTheme.typography.headlineSmall)
     }
 }
