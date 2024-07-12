@@ -16,6 +16,54 @@
     }
   },
   {
+    "city": "Moscow",
+    "charger": {
+      "busy": false,
+      "name": "Lipgartssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss",
+      "address": "2-я Бауманская ул., 5, стр. 5"
+    }
+  },
+  {
+    "city": "Moscow",
+    "charger": {
+      "busy": false,
+      "name": "Lipgart",
+      "address": "2-я Бауманская ул., 5sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss, стр. 5"
+    }
+  },
+  {
+    "city": "Moscow",
+    "charger": {
+      "busy": false,
+      "name": "Lipgart",
+      "address": "2-я Бауманская ул., 5, стр. 5"
+    }
+  },
+  {
+    "city": "Moscow",
+    "charger": {
+      "busy": true,
+      "name": "Lipgart",
+      "address": "2-я Бауманская ул., 5, стр. 5"
+    }
+  },
+  {
+    "city": "Moscow",
+    "charger": {
+      "busy": true,
+      "name": "Lipgart",
+      "address": "2-я Бауманская ул., 5, стр. 5"
+    }
+  },
+  {
+    "city": "Moscow",
+    "charger": {
+      "busy": true,
+      "name": "Lipgart",
+      "address": "2-я Бауманская ул., 5, стр. 5"
+    }
+  },
+  {
     "city": "Saint Petersburg",
     "charger": {
       "busy": true,

@@ -3,8 +3,6 @@ package com.areyana.charger.view.cities
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.consumeWindowInsets
@@ -23,24 +21,20 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.areyana.charger.R
 import com.areyana.charger.domain.model.ChargeCity
 import com.areyana.design_system.component.ChargerBackground
+import com.areyana.design_system.component.ErrorScreen
 import com.areyana.design_system.component.Title
 import com.areyana.design_system.component.noRippleClickable
 import org.koin.androidx.compose.koinViewModel
 
 
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun CitiesRoute(
     modifier: Modifier = Modifier,
@@ -52,16 +46,17 @@ fun CitiesRoute(
 
     ChargerBackground {
         Scaffold { innerPadding ->
-            BoxWithConstraints(
+            Box(
                 modifier
                     .consumeWindowInsets(innerPadding)
             ) {
-                when (uiState) {
-                    is CitiesState.Idle -> CitiesScreen(modifier, uiState as CitiesState.Idle, onNavigateToCharges, onSelectCity = {
+                when (val state = uiState) {
+                    is CitiesState.Idle -> CitiesScreen(modifier,
+                        state, onNavigateToCharges, onSelectCity = {
                         mvi.sendIntent(CitiesIntent.ChangeSelectedCity(it))
                     })
                     CitiesState.Loading -> CitiesLoadingScreen(modifier)
-                    CitiesState.Error -> CitiesErrorScreen(modifier)
+                    CitiesState.Error -> ErrorScreen(modifier)
                 }
             }
         }
@@ -160,13 +155,6 @@ private fun ConfirmButton(
             style = MaterialTheme.typography.titleMedium
         )
     }
-}
-
-@Composable
-private fun CitiesErrorScreen(modifier: Modifier = Modifier) {
-     Box(modifier = modifier.fillMaxSize()) {
-         Text(modifier = Modifier.align(Alignment.Center), text = stringResource(R.string.something_went_wrong), style = MaterialTheme.typography.headlineMedium)
-     }
 }
 
 @Composable
